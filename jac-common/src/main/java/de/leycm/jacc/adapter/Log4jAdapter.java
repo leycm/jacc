@@ -10,7 +10,7 @@
  */
 package de.leycm.jacc.adapter;
 
-import de.leycm.jacc.LogApiModule;
+import de.leycm.jacc.LogApiFactory;
 import de.leycm.jacc.log.CLogLevel;
 import de.leycm.jacc.log.CLogProfile;
 import de.leycm.jacc.log.CLogRecord;
@@ -109,8 +109,8 @@ public final class Log4jAdapter implements LogAdapter {
             CLogProfile profile = new CLogProfile(loggerName);
 
             for (CLogRecord r : LogRecordUtils.splitMessage(level, profile,
-                    event.getMessage().getFormattedMessage(), LogApiModule.getInstance().maxLength())) {
-                LogApiModule.getInstance().send(r);
+                    event.getMessage().getFormattedMessage(), LogApiFactory.getInstance().maxLength())) {
+                LogApiFactory.getInstance().send(r);
             }
         }
 

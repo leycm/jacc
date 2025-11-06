@@ -8,19 +8,19 @@ import org.jetbrains.annotations.Contract;
 /**
  * Module interface for logging API operations.
  */
-public interface LogApiModule extends Initializable {
+public interface LogApiFactory extends Initializable {
 
     /**
-     * Returns the singleton instance of the LogApiModule.
+     * Returns the singleton instance of the LogApiFactory.
      *
-     * @return the LogApiModule instance
+     * @return the LogApiFactory instance
      * @throws NullPointerException if no instance is registered
      * @see Initializable#getInstance(Class)
      */
     @NonNull
     @Contract(pure = true)
-    static LogApiModule getInstance() {
-        return Initializable.getInstance(LogApiModule.class);
+    static LogApiFactory getInstance() {
+        return Initializable.getInstance(LogApiFactory.class);
     }
 
     int maxLength();

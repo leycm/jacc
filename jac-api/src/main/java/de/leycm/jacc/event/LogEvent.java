@@ -15,6 +15,9 @@ import de.leycm.flux.event.Event;
 import de.leycm.flux.event.Monitorable;
 import de.leycm.jacc.log.CLogRecord;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 import lombok.Getter;
 import lombok.NonNull;
 
@@ -29,6 +32,12 @@ public final class LogEvent implements Event, Cancelable, Monitorable<LogEvent> 
     private final CLogRecord originalRecord;
     private final Instant timestamp;
     private boolean canceled;
+
+    DateTimeFormatter timestampFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+            .withZone(ZoneId.systemDefault());
+
+    DateTimeFormatter daystampFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            .withZone(ZoneId.systemDefault());
 
     public LogEvent(@NonNull CLogRecord record) {
         this(record, record.copy(), Instant.now());

@@ -15,7 +15,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.leycm.jacc.LogApiModule;
+import de.leycm.jacc.LogApiFactory;
 import lombok.Getter;
 import lombok.NonNull;
 import org.jetbrains.annotations.Contract;
@@ -65,9 +65,9 @@ public final class CLogRecord {
         if (message.contains("\n")) {
             throw new IllegalArgumentException("Message can not contain newline characters (\\n)");
         }
-        if (message.length() > LogApiModule.getInstance().maxLength()) {
+        if (message.length() > LogApiFactory.getInstance().maxLength()) {
             throw new IllegalArgumentException(
-                    "Message exceeds maximum length of " + LogApiModule.getInstance().maxLength() + " characters");
+                    "Message exceeds maximum length of " + LogApiFactory.getInstance().maxLength() + " characters");
         }
     }
 

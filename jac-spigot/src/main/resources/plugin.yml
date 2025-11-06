@@ -1,0 +1,7 @@
+name: MeinPlugin
+version: 2.0.1
+main: de.leycm.jacc
+api-version: 1.21
+author: LeyCM
+description: Just a custom color
+website: https://github.com/leycm/jacc

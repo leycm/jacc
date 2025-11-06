@@ -10,7 +10,7 @@
  */
 package de.leycm.jacc.adapter;
 
-import de.leycm.jacc.LogApiModule;
+import de.leycm.jacc.LogApiFactory;
 import de.leycm.jacc.log.CLogLevel;
 import de.leycm.jacc.log.CLogProfile;
 import de.leycm.jacc.log.CLogRecord;
@@ -84,8 +84,8 @@ public final class SystemStreamAdapter implements LogAdapter {
                 String message = buffer.toString().trim();
                 if (!message.isEmpty()) {
                     message = message.replace("\n", "\\n").replace("\r", "\\r");
-                    for (CLogRecord r : LogRecordUtils.splitMessage(level, profile, message, LogApiModule.getInstance().maxLength())) {
-                        LogApiModule.getInstance().send(r);
+                    for (CLogRecord r : LogRecordUtils.splitMessage(level, profile, message, LogApiFactory.getInstance().maxLength())) {
+                        LogApiFactory.getInstance().send(r);
                     }
                 }
                 buffer.setLength(0);

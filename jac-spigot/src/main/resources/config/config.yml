@@ -1,0 +1,52 @@
+console:
+  formatting:
+    filter:
+      ## List of filter rules to include or exclude log entries.
+      ## Each filter has:
+      ##   scope → the log field to match (e.g. message, profile.prefix, type.type)
+      ##   regex → the regular expression used for matching
+      filters:
+        ## Example: hide private messages (/msg) and command executions
+#        - scope: message
+#          regex: ".*\\/msg.*"
+#        - scope: message
+#          regex: ".*issued server command.*"
+        ## Example: hide logs coming from the Minecraft internal logger
+        - scope: profile.prefix
+          regex: "^Minecraft$"
+      ## Defines how filters behave:
+      ##   - blacklist → exclude matching messages
+      ##   - whitelist → only include matching messages
+      type: blacklist
+
+    ## Available placeholders:
+    ##   %timestamp%        → Current time (HH:mm:ss)
+    ##   %daystamp%         → Current date (MM:DD:YYYY)
+    ##   %message%          → The log message itself
+    ##   %profile.prefix%   → Prefix/name of the source (e.g. "Minecraft", "Paper")
+    ##   %profile.class%    → Java class of the log source
+    ##   %type.type%        → Optional log type (e.g. "command", "error")
+    ##   %type.desc%        → Optional type description
+    format: "[%timestamp%][%profile.prefix%]: %message%"
+
+  monitor:
+    filter:
+      ## Separate filter rules for the console monitor.
+      ## Can be more selective than the normal console view.
+      filters:
+        ## Example: forward player join messages
+        - scope: message
+          regex: ".*joined the game.*"
+        ## Example: forward only operator command usage
+#        - scope: message
+#          regex: ".*\\/op.*"
+        ## Example: only logs of type 'command'
+        - scope: type.type
+          regex: "^command$"
+      type: whitelist
+
+    discord:
+      ## List of Discord webhooks to receive monitored log entries.
+      ## Each matched log line (after filters) will be sent to all these URLs.
+      webhooks:
+        - "https://discord.com/api/webhooks/1234567891011121314/abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789101112"

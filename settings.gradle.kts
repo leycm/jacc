@@ -53,8 +53,14 @@ dependencyResolutionManagement {
 // ─────────────────────────────
 rootProject.name = "ley-jacc"
 
-include("api", "common", "bukkit")
+include("api", "common")
+include("spigot", "folia")
+include("velocity", "bungee")
 
 project(":api").projectDir = file("jac-api")
 project(":common").projectDir = file("jac-common")
-project(":bukkit").projectDir = file("jac-bukkit")
+
+project(":spigot").projectDir = file("jac-spigot")
+project(":folia").projectDir = file("jac-folia")
+project(":velocity").projectDir = file("jac-velocity")
+project(":bungee").projectDir = file("jac-bungee")
